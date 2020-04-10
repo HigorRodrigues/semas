@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="Layout">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pesquisar Usuário</title>                          
+    </head>
+
+    <body>                      
+        <section layout:fragment="conteudo">            
+            <div class="panel panel-primary">
+                <div class="panel-heading">                    
+                    <div class="clearfix">
+                        <h1 class="panel-title aw-titulo-panel">Usuários cadastrados</h1>
+                        <a class="btn btn-link aw-link-panel" href="/user">Página inical</a>
+                        <a class="btn btn-link aw-link-panel" href="/user/novo-usuario">Novo usuário</a>                        
+                    </div>
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th class="col-md-1">Pasta</th>
+                                <th class="col-md-2">Nome</th>
+                                <th class="col-md-1">Telefone</th>                                
+                                <th class="col-md-1">Benefício</th>                                
+                                <th class="text-center col-md-1">Ações</th>                        
+                            </tr>    
+                        </thead>
+                        <tbody>
+                            <tr th:each="usuario : ${todosUsuarios}">
+                                <td th:text="${usuario.pasta}"></td>
+                                <td th:text="${usuario.nome}"></td>
+                                <td th:text="${usuario.telefone}"></td>                                
+                                <td>
+                                    <span class="label " th:text="${usuario.tipoBeneficio.tipo}"
+                                        th:classappend="${usuario.cincoMil} ? 'label-success' : 'label-info'">
+                                    </span>
+                                </td>                                
+                                <td class="text-center">
+                                    <a class="btn btn-link btn-xs" th:href="@{/user/mostrar-usuario/{codigo}(codigo=${usuario.codigo})}">
+                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                    </a>
+                                    <a class="btn btn-link btn-xs" th:href="@{/user/editar-usuario/{codigo}(codigo=${usuario.codigo})}">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a class="btn btn-link btn-xs" th:href="@{/user/editar-usuario/{codigo}(codigo=${usuario.codigo})}">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </a>
+                                </td>
+                            </tr>                            
+                        </tbody>                        
+                    </table>
+                    <p th:text="${#lists.isEmpty(todosUsuarios)} ? 'Não foi possível encontrar o(s) usuário(s)'"></p>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

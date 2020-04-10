@@ -1,0 +1,58 @@
+body{
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.navbar{
+    background-color: steelblue;
+    padding-top: 2%;            
+    padding-bottom: 2%; 
+}
+
+.navbar-text{
+    margin-right: 1%;               
+    font-size: 1.8em;
+}
+
+.navbar-brand{
+    float: left;
+    margin-top: 0;
+    padding-top: 0;    
+}
+
+.navbar-brand img{
+    width: 40%;
+    margin-bottom: 0%;
+}
+
+.justify-text{
+    text-align: justify;    
+}
+
+.img-cartao{
+    width: 5%;
+    margin: 0%;
+}
+
+.aw-titulo-panel{
+	float: left;
+	padding-top: 2px;
+}
+
+.aw-link-panel{
+	float: right;
+    padding: 0px;
+    color: white; 
+    margin-left: 2%;   
+}
+
+
+.aw-link-panel:hover{
+    color: white;    
+    font-weight: bold;
+}
+
+.label{
+    padding: 5px;
+    font-size: 12px;
+}

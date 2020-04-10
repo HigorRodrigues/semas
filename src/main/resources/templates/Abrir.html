@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="Layout">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Pesquisar Usuário</title>                          
+    </head>
+
+    <body>                      
+        <section layout:fragment="conteudo">            
+            <div class="list-group">
+                <span class="list-group-item">
+                  <h4 class="list-group-item-heading">Nome</h4>
+                  <p class="list-group-item-text" th:text="${usuario.nome}"></p>
+                </span>
+
+                <span class="list-group-item">
+                    <h4 class="list-group-item-heading">Telefone</h4>
+                    <p class="list-group-item-text" th:text="${usuario.telefone}"></p>
+                </span>
+
+                <span class="list-group-item">
+                    <h4 class="list-group-item-heading">Tipo de Benefício</h4>
+                    <p class="list-group-item-text" th:text="${usuario.tipoBeneficio.tipo}"></p>
+                </span>
+
+                <span class="list-group-item">
+                    <h4 class="list-group-item-heading">Bairro</h4>
+                    <p class="list-group-item-text" th:text="${usuario.bairro.bairro}"></p>
+                </span>
+
+                <span class="list-group-item">
+                    <h4 class="list-group-item-heading">Observação</h4>
+                    <p class="list-group-item-text" th:text="${#strings.isEmpty(usuario.observacao)} ? 
+                        'Não há observação' : '${usuario.observacao}'"></p>
+                </span>
+            
+              </div>
+        </section>
+    </body>
+</html>

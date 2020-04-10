@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorator="Layout">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Recomeçar</title>        
+        <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    </head>
+
+    <body>                
+
+        <section layout:fragment="conteudo">                                    
+            <form class="form-horizontal" method="POST" action="/user" th:object="${usuario}">                                                 
+                <div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+                    <span th:text = "${mensagem}"></span>
+                </div>
+            
+                <div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+                    <div th:each="erro : ${#fields.detailedErrors()}">
+                        <span th:text="${erro.message}"></span>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="clearfix">
+                            <h1 class="panel-title aw-titulo-panel">Cadastro de usuário</h1>                            
+                            <a class="btn btn-link aw-link-panel" href="/user/pesquisar">Pesquisar usuário</a>
+                            <a class="btn btn-link aw-link-panel" href="/user">Página inicial</a>                        
+                        </div>
+                    </div>
+
+                    <div class="panel-body">                                                            
+                        
+                        <input type="hidden" th:field="*{codigo}" />
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? 'has-error'">
+                            <label for="nome" class="col-sm-2 control-label">Nome: </label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="nome" th:field="*{nome}"
+                                    placeholder="Nome do Usuario" />
+                            </div>
+                        </div>
+
+                        <div class="form-group" th:classappend="${#fields.hasErrors('telefone')} ? 'has-error'">
+                            <label for="telefone" class="col-sm-2 control-label">Telefone: </label>
+                            <div class="col-sm-2">
+                                <input type="text" class="form-control" id="telefone" th:field="*{telefone}"
+                                placeholder="(XX)XXXXX-XXXX" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bairro" class="col-sm-2 control-label">Bairro: </label>
+                            <div class="col-sm-2">
+                                <select class="form-control" th:field="*{bairro}">
+                                    <option th:each="bairro : ${todosBairros}" th:value="${bairro}"
+                                    th:text="${bairro.bairro}"></option>                                        
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="beneficio" class="col-sm-2 control-label">Benefício: </label>
+                            <div class="col-sm-2">
+                                <select class="form-control" th:field="*{tipoBeneficio}">
+                                    <option th:each="tipo : ${todosTiposBeneficio}" th:value="${tipo}"
+                                    th:text="${tipo.tipo}"></option>                                        
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" th:classappend="${#fields.hasErrors('observacao')} ? 'has-error'">
+                            <label for="observacao" class="col-sm-2 control-label">Observação: </label>
+                            <div class="col-sm-6">
+                                <textarea class="form-control" rows="3" th:field="*{observacao}"
+                                    placeholder="Diga alguma observação encontrada"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label"></div>
+                            <div class="col-sm-2">
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                        </div>
+                    </div>                                                                  
+                </form>                
+        </section>
+    </body>
+</html>
